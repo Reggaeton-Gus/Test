@@ -93,7 +93,7 @@ training$classe= as.factor(training$classe)
 
 
 ## Repeated k-fold Cross Validation
-We use the method of Repeated k-fold Cross Validation. In this method, the data is split into k-folds and repeated a number of times. The final model accuracy is taken as the mean from the number of repeats. We use a 10-fold cross validation with 3 repeats to estimate Naive Bayes on the training set.
+We use the method of Repeated k-fold Cross Validation. We build the model using a random forest search. In this method, the data is split into k-folds and a random forest search is repeated a number of times. The final model accuracy is taken as the mean from the number of repeats. We use a 10-fold cross validation with 3 repeats to estimate Naive Bayes on the training set.
 
 ``` {r 10-fold_crossVal}
 
@@ -101,6 +101,8 @@ train_control <- trainControl(method="repeatedcv", number=10, repeats=3)
 model <- randomForest(classe~., data=training, trControl=train_control, method="class")
 print(model)
 ```
+
+The OOB estimate of error for the model is 0.3%.
 
 ## Model Predictions
 The model is used to predict the class of exercise of the testing data set.

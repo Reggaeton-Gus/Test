@@ -103,7 +103,7 @@ training$classe= as.factor(training$classe)
 
 
 ## Repeated k-fold Cross Validation
-We use the method of Repeated k-fold Cross Validation. In this method, the data is split into k-folds and repeated a number of times. The final model accuracy is taken as the mean from the number of repeats. We use a 10-fold cross validation with 3 repeats to estimate Naive Bayes on the training set.
+We use the method of Repeated k-fold Cross Validation. We build the model using a random forest search. In this method, the data is split into k-folds and a random forest search is repeated a number of times. The final model accuracy is taken as the mean from the number of repeats. We use a 10-fold cross validation with 3 repeats to estimate Naive Bayes on the training set.
 
 
 ```r
@@ -124,11 +124,13 @@ print(model)
 ## Confusion matrix:
 ##      A    B    C    D    E  class.error
 ## A 5578    2    0    0    0 0.0003584229
-## B   10 3784    3    0    0 0.0034237556
-## C    0   13 3408    1    0 0.0040911748
-## D    0    0   21 3192    3 0.0074626866
+## B   11 3782    4    0    0 0.0039504872
+## C    0   12 3409    1    0 0.0037989480
+## D    0    0   21 3193    2 0.0071517413
 ## E    0    0    1    4 3602 0.0013861935
 ```
+
+The OOB estimate of error for the model is 0.3%.
 
 ## Model Predictions
 The model is used to predict the class of exercise of the testing data set.
